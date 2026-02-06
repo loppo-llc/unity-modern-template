@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>UnityDotNetSample.EditorConsoleLogProxy</RootNamespace>
+    <AssemblyName>editor-console-log-proxy</AssemblyName>
+
+    <!-- ビルド後に Unity へ自動コピー -->
+    <CopyToUnityPlugins>true</CopyToUnityPlugins>
+
+    <!-- Unity デバッグ用に常に PDB を生成 -->
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <!-- ============================================================ -->
+  <!-- PolySharp: netstandard2.1 でモダン C# 機能を有効化             -->
+  <!-- (init, required, file-scoped types, CallerArgumentExpression) -->
+  <!-- ============================================================ -->
+  <ItemGroup>
+    <PackageReference Include="PolySharp" Version="1.15.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- ============================================================ -->
+  <!-- Unity Engine / Editor 参照                                    -->
+  <!-- 出力にはコピーしない — Unity がランタイムで提供する            -->
+  <!-- ============================================================ -->
+  <ItemGroup>
+    <!-- コアモジュール (Application, Debug, LogType 用) -->
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(UnityEngineModulesPath)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Editor モジュール ([InitializeOnLoad] 用) -->
+    <Reference Include="UnityEditor.CoreModule">
+      <HintPath>$(UnityEngineModulesPath)\UnityEditor.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

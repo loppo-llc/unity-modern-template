@@ -1,0 +1,44 @@
+<Project>
+
+  <!-- ============================================================ -->
+  <!-- Unity パス設定                                                -->
+  <!-- 優先順位: 環境変数 > .props.user ファイル > デフォルト値       -->
+  <!-- ============================================================ -->
+  <PropertyGroup>
+    <!-- デフォルトの Unity Editor インストールパス -->
+    <UnityEditorPath Condition="'$(UnityEditorPath)' == ''">C:\Program Files\Unity\Hub\Editor\6000.3.7f1</UnityEditorPath>
+  </PropertyGroup>
+
+  <!-- ローカルユーザーファイルで上書き可能 (gitignore 済み) -->
+  <Import Project="$(MSBuildThisFileDirectory)Directory.Build.props.user"
+          Condition="Exists('$(MSBuildThisFileDirectory)Directory.Build.props.user')" />
+
+  <!-- 環境変数で上書き可能（最優先） -->
+  <PropertyGroup Condition="'$(UNITY_EDITOR_PATH)' != ''">
+    <UnityEditorPath>$(UNITY_EDITOR_PATH)</UnityEditorPath>
+  </PropertyGroup>
+
+  <!-- ============================================================ -->
+  <!-- Unity 派生パス                                                -->
+  <!-- ============================================================ -->
+  <PropertyGroup>
+    <UnityManagedPath>$(UnityEditorPath)\Editor\Data\Managed</UnityManagedPath>
+    <UnityEngineModulesPath>$(UnityManagedPath)\UnityEngine</UnityEngineModulesPath>
+    <UnityProjectPath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\unity'))</UnityProjectPath>
+    <UnityPluginsPath>$(UnityProjectPath)\Assets\_Main\Scripts</UnityPluginsPath>
+    <UnityScriptAssembliesPath>$(UnityProjectPath)\Library\ScriptAssemblies</UnityScriptAssembliesPath>
+  </PropertyGroup>
+
+  <!-- ============================================================ -->
+  <!-- 共有コンパイラ・プロジェクト設定                              -->
+  <!-- ============================================================ -->
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>9999</WarningLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+</Project>

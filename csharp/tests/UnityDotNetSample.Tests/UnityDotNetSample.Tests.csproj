@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>UnityDotNetSample.Tests</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <!-- ============================================================ -->
+  <!-- xUnit テスト基盤                                              -->
+  <!-- ============================================================ -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="xunit" Version="2.*" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="6.*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
+    <!-- NSubstitute (モッキング) -->
+    <PackageReference Include="NSubstitute" Version="5.*" />
+  </ItemGroup>
+
+  <!-- ============================================================ -->
+  <!-- プロジェクト参照                                              -->
+  <!-- ============================================================ -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\UnityDotNetSample\UnityDotNetSample.csproj" />
+    <ProjectReference Include="..\..\src\EditorConsoleLogProxy\EditorConsoleLogProxy.csproj" />
+  </ItemGroup>
+
+  <!-- ============================================================ -->
+  <!-- テスト用 Unity Engine 参照                                    -->
+  <!-- Private=true でテスト出力に DLL をコピー（ランタイムに必要）   -->
+  <!-- ============================================================ -->
+  <ItemGroup>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(UnityEngineModulesPath)\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.CoreModule">
+      <HintPath>$(UnityEngineModulesPath)\UnityEditor.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

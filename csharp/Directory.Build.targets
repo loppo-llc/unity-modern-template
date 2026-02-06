@@ -1,0 +1,29 @@
+<Project>
+
+  <!-- ============================================================ -->
+  <!-- ビルド後処理: DLL を Unity Assets/_Main/Scripts へコピー       -->
+  <!-- CopyToUnityPlugins=true を設定したプロジェクトのみ対象        -->
+  <!-- ============================================================ -->
+  <Target Name="CopyToUnityPlugins"
+          AfterTargets="Build"
+          Condition="'$(CopyToUnityPlugins)' == 'true'">
+
+    <!-- 出力先ディレクトリが存在しない場合は作成 -->
+    <MakeDir Directories="$(UnityPluginsPath)" Condition="!Exists('$(UnityPluginsPath)')" />
+
+    <!-- DLL をコピー -->
+    <Copy SourceFiles="$(TargetPath)"
+          DestinationFolder="$(UnityPluginsPath)"
+          SkipUnchangedFiles="true" />
+
+    <!-- PDB をコピー（存在する場合） -->
+    <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
+          DestinationFolder="$(UnityPluginsPath)"
+          SkipUnchangedFiles="true"
+          Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
+
+    <Message Importance="high"
+             Text="Copied $(TargetFileName) to $(UnityPluginsPath)" />
+  </Target>
+
+</Project>

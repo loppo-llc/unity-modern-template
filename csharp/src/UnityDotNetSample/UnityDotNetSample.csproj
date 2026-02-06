@@ -1,0 +1,81 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>UnityDotNetSample</RootNamespace>
+    <AssemblyName>csharp</AssemblyName>
+
+    <!-- ビルド後に Unity へ自動コピー -->
+    <CopyToUnityPlugins>true</CopyToUnityPlugins>
+
+    <!-- Unity デバッグ用に常に PDB を生成 -->
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <!-- ============================================================ -->
+  <!-- PolySharp: netstandard2.1 でモダン C# 機能を有効化             -->
+  <!-- (init, required, file-scoped types, CallerArgumentExpression) -->
+  <!-- ============================================================ -->
+  <ItemGroup>
+    <PackageReference Include="PolySharp" Version="1.15.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- ============================================================ -->
+  <!-- Unity Engine 参照                                             -->
+  <!-- 出力にはコピーしない — Unity がランタイムで提供する            -->
+  <!-- プロジェクトに合わせてモジュールを追加・削除すること           -->
+  <!-- ============================================================ -->
+  <ItemGroup>
+    <!-- コアモジュール（常に必要） -->
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(UnityEngineModulesPath)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- 物理演算 -->
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(UnityEngineModulesPath)\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- UI -->
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(UnityEngineModulesPath)\UnityEngine.UIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- IMGUI -->
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(UnityEngineModulesPath)\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- アニメーション -->
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>$(UnityEngineModulesPath)\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- ============================================================ -->
+  <!-- Unity パッケージ参照 (Library/ScriptAssemblies から)           -->
+  <!-- Unity プロジェクトを一度開いた後にコメント解除すること         -->
+  <!-- ============================================================ -->
+  <!--
+  <ItemGroup>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>$(UnityScriptAssembliesPath)\Unity.InputSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>$(UnityScriptAssembliesPath)\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  -->
+
+</Project>

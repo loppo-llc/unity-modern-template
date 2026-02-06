@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/UnityDotNetSample/UnityDotNetSample.csproj" />
+    <Project Path="src/EditorConsoleLogProxy/EditorConsoleLogProxy.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/UnityDotNetSample.Tests/UnityDotNetSample.Tests.csproj" />
+  </Folder>
+</Solution>

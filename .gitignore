@@ -1,0 +1,65 @@
+# ============================================================
+# .NET / C# プロジェクト
+# ============================================================
+## ビルド成果物
+csharp/**/bin/
+csharp/**/obj/
+
+## NuGet
+csharp/**/packages/
+*.nupkg
+*.snupkg
+
+## ユーザー固有ファイル
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+Directory.Build.props.user
+
+## VS / Rider
+.vs/
+.idea/
+*.DotSettings.user
+
+## テスト結果
+csharp/**/TestResults/
+csharp/**/coverage/
+
+# ============================================================
+# Unity プロジェクト
+# ============================================================
+## Unity 自動生成
+unity/[Ll]ibrary/
+unity/[Tt]emp/
+unity/[Oo]bj/
+unity/[Bb]uild/
+unity/[Bb]uilds/
+unity/[Ll]ogs/
+unity/[Uu]ser[Ss]ettings/
+
+## Unity 自動生成 IDE ファイル
+unity/*.sln
+unity/*.slnx
+unity/*.csproj
+
+## .NET プロジェクトからビルドされた DLL（ポストビルドで自動生成）
+unity/Assets/_Main/Scripts/*.dll
+unity/Assets/_Main/Scripts/*.pdb
+unity/Assets/_Main/Scripts/*.dll.meta
+unity/Assets/_Main/Scripts/*.pdb.meta
+
+# ============================================================
+# IDE / エディタ
+# ============================================================
+.vs/
+.idea/
+.claude/
+*.swp
+*~
+
+# ============================================================
+# OS
+# ============================================================
+[Tt]humbs.db
+*.DS_Store
